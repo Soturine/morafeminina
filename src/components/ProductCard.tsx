@@ -1,6 +1,8 @@
-import { MessageCircle } from "lucide-react";
+import { useState } from "react";
+import { MessageCircle, ZoomIn } from "lucide-react";
 import { formatPrice, installments, type Product } from "@/data/products";
 import { SmartImage } from "@/components/SmartImage";
+import { ProductZoom } from "@/components/ProductZoom";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { productMessage } from "@/lib/whatsapp";
 import { track } from "@/lib/analytics";
@@ -27,15 +29,54 @@ export function ProductCard({ product }: { product: Product }) {
       ? Math.round((1 - product.price / product.originalPrice) * 100)
       : null;
 
+  const [zoomOpen, setZoomOpen] = useState(false);
+  const [lens, setLens] = useState<{ x: number; y: number } | null>(null);
+
+  const image = product.image ?? "";
+  const imageLarge = product.imageLarge ?? image;
+  const alt = product.imageAlt ?? product.name;
+
   return (
     <article className="card-premium group flex h-full flex-col overflow-hidden">
-      <div className="relative">
+      <div
+        className="relative"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          setLens({
+            x: ((e.clientX - rect.left) / rect.width) * 100,
+            y: ((e.clientY - rect.top) / rect.height) * 100,
+          });
+        }}
+        onMouseLeave={() => setLens(null)}
+      >
         <SmartImage
-          src={product.image ?? ""}
-          alt={product.imageAlt ?? product.name}
+          src={image}
+          alt={alt}
           className="aspect-4/5 w-full"
           imgClassName="transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
         />
+
+        {image && lens ? (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 hidden opacity-0 transition-opacity duration-300 group-hover:opacity-100 lg:block"
+            style={{
+              backgroundImage: `url(${imageLarge})`,
+              backgroundSize: "220%",
+              backgroundPosition: `${lens.x}% ${lens.y}%`,
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        ) : null}
+
+        <button
+          type="button"
+          onClick={() => setZoomOpen(true)}
+          aria-label={`Ampliar foto de ${product.name}`}
+          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-background/90 text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background"
+        >
+          <ZoomIn className="h-4 w-4" aria-hidden="true" />
+        </button>
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-foreground/35 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -43,6 +84,16 @@ export function ProductCard({ product }: { product: Product }) {
           {product.isNew ? <Badge tone="new">Novidade</Badge> : null}
           {discount ? <Badge tone="offer">-{discount}%</Badge> : null}
         </div>
+
+        {zoomOpen ? (
+          <ProductZoom
+            src={imageLarge}
+            alt={alt}
+            caption={product.name}
+            onClose={() => setZoomOpen(false)}
+          />
+        ) : null}
+
 
         <div className="absolute inset-x-3 bottom-3 translate-y-3 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 max-lg:hidden">
           <WhatsAppLink
