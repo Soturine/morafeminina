@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { X, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 
 const MIN_ZOOM = 1;
@@ -141,7 +142,10 @@ export function ProductZoom({
     zoomTo(stateRef.current.zoom * factor, rect.width / 2, rect.height / 2);
   };
 
-  return (
+  const body = typeof document !== "undefined" ? document.body : null;
+  if (!body) return null;
+
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -213,6 +217,7 @@ export function ProductZoom({
         Use a roda do mouse ou dois dedos para dar zoom · arraste para mover · duplo toque para
         aproximar
       </p>
-    </div>
+    </div>,
+    body,
   );
 }

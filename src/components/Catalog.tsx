@@ -70,10 +70,17 @@ export function Catalog({
       ),
     [products],
   );
-  const sizes = useMemo(
-    () => Array.from(new Set(products.flatMap((p) => p.sizes ?? []))),
-    [products],
-  );
+  const sizes = useMemo(() => {
+    const letter = ["RN", "PP", "P", "M", "G", "GG", "XG"];
+    return Array.from(new Set(products.flatMap((p) => p.sizes ?? []))).sort((a, b) => {
+      const ia = letter.indexOf(a);
+      const ib = letter.indexOf(b);
+      if (ia !== -1 && ib !== -1) return ia - ib;
+      if (ia !== -1) return -1;
+      if (ib !== -1) return 1;
+      return Number(a) - Number(b);
+    });
+  }, [products]);
   const ages = useMemo(
     () => Array.from(new Set(products.map((p) => p.ageRange).filter(Boolean) as string[])),
     [products],
