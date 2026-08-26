@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { storePhotos } from "@/data/store-photos";
 import { SmartImage } from "@/components/SmartImage";
 import { Section, SectionHeading } from "@/components/Section";
+import { Reveal } from "@/components/Reveal";
 
 type Category = {
   title: string;
@@ -52,13 +53,13 @@ export function CategoryGrid() {
       />
 
       <ul className="mt-10 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-        {categories.map((category) => (
-          <li key={category.title}>
+        {categories.map((category, i) => (
+          <Reveal as="li" key={category.title} delay={i * 80}>
             <Link to={category.to} className="group block">
               <SmartImage
                 src={category.image}
                 alt={category.alt}
-                className="aspect-3/4"
+                className="frame aspect-3/4"
                 imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               />
               <h3 className="mt-4 text-xl">{category.title}</h3>
@@ -69,7 +70,7 @@ export function CategoryGrid() {
                 Ver mais
               </span>
             </Link>
-          </li>
+          </Reveal>
         ))}
       </ul>
     </Section>
