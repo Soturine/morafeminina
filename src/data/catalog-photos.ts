@@ -50,4 +50,31 @@ export const catalogPhotos = {
   tenisPlataforma: pick(53, "Tênis feminino rosa com solado plataforma"),
   jaquetaRosa: pick(57, "Jaqueta de moletom feminina rosa com zíper"),
   toucasTrico: pick(35, "Toucas de tricô em preto e off-white"),
+  shortMagenta: pick(202, "Short feminino magenta com amarração"),
+  blusaTricoRosa: pick(205, "Blusa de tricô feminina em rosa claro"),
+  regatasColoridas: pick(207, "Regatas femininas canelada em várias cores"),
+  blusaBrancaLaise: pick(209, "Blusa feminina branca com detalhe em laise"),
+  calcaPantalonaBranca: pick(190, "Calça pantalona feminina off-white"),
+  jeansArara: pick(187, "Arara com calças jeans femininas"),
+  shortCinza: pick(216, "Short feminino cinza de moletom"),
+  camisetaPretaOnca: pick(203, "Camiseta preta feminina com estampa de onça"),
+  vestidoAzulBabados: pick(129, "Vestido feminino azul com babados"),
+
+  // Acessórios
+  bonesOculos: pick(184, "Bonés e óculos de sol expostos na loja"),
+  mochilasEstampadas: pick(185, "Mochilas escolares estampadas penduradas na loja"),
+  bolsasParede: pick(186, "Bolsas femininas expostas na parede da loja"),
+  bijuterias: pick(212, "Cartelas de bijuterias e acessórios na loja"),
+
+  // Infantil e bebê
+  camisetaLooneyRosa: pick(125, "Camiseta infantil rosa com estampa Looney Tunes"),
+  vestidosInfantisEstampados: pick(148, "Arara com vestidos infantis estampados"),
+  conjuntoSocialMenino: pick(134, "Conjunto social infantil masculino com colete"),
+  bodiesBebeArara: pick(163, "Bodies e conjuntos de bebê embalados na arara"),
+  camisetasInfantisEmbaladas: pick(249, "Camisetas infantis lilás embaladas na loja"),
+  shortJeansInfantil: pick(223, "Shorts jeans infantis expostos na loja"),
+  enxovalRosa: pick(217, "Enxoval de bebê em tons de rosa nas prateleiras"),
+  kitsBebeAzul: pick(191, "Kits de enxoval e acessórios de bebê em azul"),
+  higieneBebe: pick(200, "Acessórios de higiene e cuidado para bebê"),
+  toucasInfantis: pick(237, "Toucas infantis de tricô com bichinhos"),
 } satisfies Record<string, CatalogPhoto>;
