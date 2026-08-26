@@ -104,10 +104,11 @@ export function ProductCard({ product }: { product: Product }) {
           <p className="mt-1 text-xs text-muted-foreground">Faixa etária: {product.ageRange}</p>
         ) : null}
 
-        <WhatsAppLink
-          variant="outline"
-          size="sm"
-          className="mt-4 w-full min-w-0 whitespace-normal px-2 text-center text-[0.6875rem] leading-tight tracking-[0.1em] lg:hidden"
+        <div className="mt-auto pt-4 lg:hidden">
+          <WhatsAppLink
+            variant="outline"
+            size="sm"
+            className="w-full min-w-0 whitespace-normal px-2 text-center text-[0.6875rem] leading-tight tracking-[0.1em]"
           message={productMessage(product.name)}
           context={product.id}
           onClick={() => track("product_interest_click", { product: product.id })}
