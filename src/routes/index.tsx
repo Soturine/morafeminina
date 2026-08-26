@@ -3,7 +3,7 @@ import { MapPin } from "lucide-react";
 import { storePhotos } from "@/data/store-photos";
 import { SmartImage } from "@/components/SmartImage";
 import { site } from "@/data/site";
-import { getFeatured } from "@/data/products";
+import { getFeatured, PRICE_DISCLAIMER } from "@/data/products";
 import { ButtonLink } from "@/components/Button";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { CategoryGrid } from "@/components/CategoryGrid";
@@ -15,6 +15,7 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 import { ProductCard } from "@/components/ProductCard";
 import { EmptyState } from "@/components/EmptyState";
 import { Section, SectionHeading } from "@/components/Section";
+import { Reveal } from "@/components/Reveal";
 
 const title = "Mora Moda Feminina e Infantil | Moda em Jacareí";
 const description =
