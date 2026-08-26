@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
 import { storePhotos } from "@/data/store-photos";
+import heroModelo from "@/assets/hero-modelo.jpg.asset.json";
 import { SmartImage } from "@/components/SmartImage";
 import { site } from "@/data/site";
 import { getFeatured, PRICE_DISCLAIMER } from "@/data/products";
@@ -76,16 +77,16 @@ function Hero() {
 
         <div className="relative">
           <SmartImage
-            src={storePhotos.vitrineManequins.src}
-            alt={storePhotos.vitrineManequins.alt}
-            width={storePhotos.vitrineManequins.width}
-            height={storePhotos.vitrineManequins.height}
+            src={heroModelo.url}
+            alt="Modelo com vestido de linho em ambiente claro e sofisticado"
+            width={1008}
+            height={1264}
             eager
-            className="frame aspect-4/3 lg:aspect-3/4"
+            className="frame aspect-4/5 lg:aspect-4/5"
           />
           <SmartImage
-            src={storePhotos.femininoVestidos.src}
-            alt={storePhotos.femininoVestidos.alt}
+            src={storePhotos.vitrineManequins.src}
+            alt={storePhotos.vitrineManequins.alt}
             className="frame absolute -bottom-6 -left-6 hidden aspect-3/4 w-40 border-4 border-background lg:block xl:w-48"
           />
         </div>
