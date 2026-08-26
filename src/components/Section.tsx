@@ -44,11 +44,13 @@ export function SectionHeading({
     <header className={cn("max-w-2xl", align === "center" && "mx-auto text-center")}>
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <Tag className="mt-3 text-balance text-3xl leading-tight md:text-4xl">{title}</Tag>
+      <span className={cn("rule-accent mt-5", align === "center" && "mx-auto")} aria-hidden="true" />
       {description ? (
         <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground">
           {description}
         </p>
       ) : null}
     </header>
+
   );
 }

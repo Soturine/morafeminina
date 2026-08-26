@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import type { Product } from "@/data/products";
+import { PRICE_DISCLAIMER, type Product } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { EmptyState } from "@/components/EmptyState";
+import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 
 type PriceRange = { id: string; label: string; min: number; max: number };
@@ -222,13 +223,16 @@ export function Catalog({
           />
         </div>
       ) : (
-        <ul className="mt-6 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-3 xl:grid-cols-4">
-          {filtered.map((p) => (
-            <li key={p.id}>
-              <ProductCard product={p} />
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className="mt-6 grid grid-cols-2 gap-x-5 gap-y-8 lg:grid-cols-3 xl:grid-cols-4">
+            {filtered.map((p, i) => (
+              <Reveal as="li" key={p.id} delay={(i % 4) * 70}>
+                <ProductCard product={p} />
+              </Reveal>
+            ))}
+          </ul>
+          <p className="mt-8 text-xs text-muted-foreground">{PRICE_DISCLAIMER}</p>
+        </>
       )}
     </div>
   );
