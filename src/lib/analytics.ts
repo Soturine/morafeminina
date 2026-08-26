@@ -13,6 +13,7 @@ export type AnalyticsEvent =
   | "product_click"
   | "product_interest_click"
   | "facebook_click"
+  | "instagram_click"
   | "catalog_view";
 
 export function track(event: AnalyticsEvent, payload?: Record<string, string>): void {

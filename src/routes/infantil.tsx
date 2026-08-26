@@ -5,9 +5,9 @@ import { Catalog } from "@/components/Catalog";
 import { Section, SectionHeading } from "@/components/Section";
 import { track } from "@/lib/analytics";
 
-const title = "Moda Infantil em Jacareí | Moda Moda Feminina";
+const title = "Moda Infantil em Jacareí | Mora Moda Feminina e Infantil";
 const description =
-  "Roupas infantis confortáveis e bonitas na Moda Moda, em Jacareí - SP. Veja as peças e fale no WhatsApp para tamanhos, faixa etária e disponibilidade.";
+  "Roupas infantis confortáveis e bonitas na Mora Moda, em Jacareí - SP. Veja as peças e fale no WhatsApp para tamanhos, faixa etária e disponibilidade.";
 
 export const Route = createFileRoute("/infantil")({
   head: () => ({

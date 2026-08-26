@@ -17,7 +17,7 @@ const purchaseOptions = [
 ];
 
 export function StoreSection({
-  title = "Venha conhecer a Moda Moda",
+  title = "Venha conhecer a Mora Moda",
   eyebrow = "Loja física",
   as = "h2",
 }: {

@@ -21,6 +21,13 @@ export function clothingStoreSchema() {
       reviewCount: site.rating.count,
       bestRating: 5,
     },
-    ...(site.links.facebook ? { sameAs: [site.links.facebook] } : {}),
+    ...(site.links.instagram || site.links.googleProfile
+      ? {
+          sameAs: [
+            ...(site.links.instagram ? [site.links.instagram] : []),
+            ...(site.links.googleProfile ? [site.links.googleProfile] : []),
+          ],
+        }
+      : {}),
   };
 }

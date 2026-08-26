@@ -10,7 +10,7 @@ export function Footer() {
     <footer className="border-t border-border bg-secondary">
       <div className="shell grid gap-10 py-14 md:grid-cols-3 md:py-16">
         <div>
-          <p className="font-display text-2xl">Moda Moda Feminina</p>
+          <p className="font-display text-2xl">Mora Moda Feminina e Infantil</p>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
             Moda feminina e infantil em Jacareí - SP, com variedade, qualidade e atendimento
             próximo.
@@ -54,6 +54,19 @@ export function Footer() {
                 </a>
               </li>
             ) : null}
+            {site.links.instagram ? (
+              <li>
+                <a
+                  href={site.links.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("instagram_click")}
+                  className="link-underline text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Instagram
+                </a>
+              </li>
+            ) : null}
           </ul>
         </nav>
 
@@ -82,7 +95,7 @@ export function Footer() {
       <div className="border-t border-border/70">
         <div className="shell py-6">
           <p className="text-xs text-muted-foreground">
-            © {year} Moda Moda Feminina. Todos os direitos reservados.
+            © {year} Mora Moda Feminina e Infantil. Todos os direitos reservados.
           </p>
         </div>
       </div>

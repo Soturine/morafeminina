@@ -81,13 +81,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Moda Moda Feminina | Moda Feminina e Infantil em Jacareí" },
+      { title: "Mora Moda Feminina e Infantil | Moda em Jacareí" },
       {
         name: "description",
         content:
           "Moda feminina e infantil em Jacareí com variedade, qualidade e ótimos preços. Compre na loja, consulte retirada ou entrega e fale conosco pelo WhatsApp.",
       },
-      { property: "og:site_name", content: "Moda Moda Feminina" },
+      { property: "og:site_name", content: "Mora Moda Feminina e Infantil" },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
