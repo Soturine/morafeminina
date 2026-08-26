@@ -14,7 +14,7 @@ export const instagramPosts: string[] = [];
 /** Extrai o código da publicação a partir da URL (/p/, /reel/ ou /tv/). */
 export function getInstagramShortcode(url: string): string | null {
   const match = url.match(/instagram\.com\/(?:p|reel|reels|tv)\/([A-Za-z0-9_-]+)/);
-  return match ? match[1] : null;
+  return match?.[1] ?? null;
 }
 
 export function getInstagramEmbeds(): { url: string; embedUrl: string }[] {
