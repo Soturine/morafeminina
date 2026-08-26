@@ -116,7 +116,35 @@ export function PhotoGallery({
         </ButtonAnchor>
       </div>
 
-      <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-8 flex flex-wrap gap-2">
+        {[{ id: null as GalleryTag | null, label: "Todas" }, ...TAG_LABELS].map((t) => {
+          const active = tag === t.id;
+          return (
+            <button
+              key={t.label}
+              type="button"
+              aria-pressed={active}
+              onClick={() => {
+                setTag(t.id);
+                setVisible(initialCount);
+              }}
+              className={
+                active
+                  ? "h-9 rounded-full border border-primary bg-primary px-4 text-xs uppercase tracking-[0.12em] text-primary-foreground"
+                  : "h-9 rounded-full border border-border bg-card px-4 text-xs uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+              }
+            >
+              {t.label}
+            </button>
+          );
+        })}
+      </div>
+
+      <p className="mt-4 text-xs text-muted-foreground" role="status">
+        {photos.length} {photos.length === 1 ? "foto" : "fotos"}
+      </p>
+
+      <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         {shown.map((photo, index) => (
           <li key={photo.id}>
             <button
