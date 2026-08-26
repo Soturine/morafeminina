@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getNewArrivals } from "@/data/products";
 import { Catalog } from "@/components/Catalog";
+import { InstagramSection } from "@/components/InstagramSection";
+import { PhotoGallery } from "@/components/PhotoGallery";
 import { Section, SectionHeading } from "@/components/Section";
 
 const title = "Novidades | Mora Moda Feminina e Infantil em Jacareí";
 const description =
-  "As peças que acabaram de chegar à Mora Moda, em Jacareí - SP. Moda feminina e infantil com preços acessíveis. Fale no WhatsApp para saber mais.";
+  "Acompanhe as novidades da Mora Moda, em Jacareí - SP: publicações recentes do Instagram @mora.feminina e fotos atuais da loja.";
 
 export const Route = createFileRoute("/novidades")({
   head: () => ({
@@ -23,17 +25,32 @@ export const Route = createFileRoute("/novidades")({
 });
 
 function NovidadesPage() {
+  const arrivals = getNewArrivals();
+
   return (
-    <Section>
-      <SectionHeading
-        eyebrow="Chegou na loja"
-        as="h1"
-        title="Novidades"
-        description="Peças recém-chegadas de moda feminina e infantil, atualizadas conforme a loja recebe novos produtos."
+    <>
+      <Section className="pb-0">
+        <SectionHeading
+          eyebrow="Chegou na loja"
+          as="h1"
+          title="Novidades"
+          description="As novidades da Mora Moda são anunciadas no Instagram da loja. Abaixo estão as publicações mais recentes do perfil oficial."
+        />
+        {arrivals.length > 0 ? (
+          <div className="mt-10">
+            <Catalog products={arrivals} />
+          </div>
+        ) : null}
+      </Section>
+
+      <InstagramSection initialCount={6} />
+      <PhotoGallery
+        eyebrow="Galeria"
+        title="Fotos recentes da loja"
+        description="Imagens reais publicadas na ficha da loja no Google."
+        initialCount={8}
+        showLoadMore={false}
       />
-      <div className="mt-10">
-        <Catalog products={getNewArrivals()} />
-      </div>
-    </Section>
+    </>
   );
 }

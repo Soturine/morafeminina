@@ -43,11 +43,15 @@ export const site = {
     /** URL de rota do Google Maps (usada em "Como chegar"). */
     googleDirections:
       "https://www.google.com/maps/dir/?api=1&destination=" +
-      encodeURIComponent("Mora Moda Feminina e Infantil, R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP, 12312-190"),
+      encodeURIComponent(
+        "Mora Moda Feminina e Infantil, R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP, 12312-190",
+      ),
     /** Mapa incorporado (sem chave de API, sem cookies de login). */
     googleMapEmbed:
       "https://www.google.com/maps?q=" +
-      encodeURIComponent("Mora Moda Feminina e Infantil, R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP, 12312-190") +
+      encodeURIComponent(
+        "Mora Moda Feminina e Infantil, R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP, 12312-190",
+      ) +
       "&z=19&output=embed",
   },
 
@@ -122,6 +126,7 @@ export const navigation = [
   { label: "Feminino", to: "/feminino" },
   { label: "Infantil", to: "/infantil" },
   { label: "Novidades", to: "/novidades" },
+  { label: "Galeria", to: "/galeria" },
   { label: "Sobre", to: "/sobre" },
   { label: "Localização", to: "/contato" },
 ] as const;

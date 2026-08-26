@@ -1,15 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import catFeminino from "@/assets/cat-feminino.jpg";
-import catInfantil from "@/assets/cat-infantil.jpg";
-import catNovidades from "@/assets/cat-novidades.jpg";
-import catOfertas from "@/assets/cat-ofertas.jpg";
+import { storePhotos } from "@/data/store-photos";
+import { SmartImage } from "@/components/SmartImage";
 import { Section, SectionHeading } from "@/components/Section";
 
 type Category = {
   title: string;
   text: string;
-  to: "/feminino" | "/infantil" | "/novidades";
-  search?: { oferta: boolean };
+  to: "/feminino" | "/infantil" | "/novidades" | "/galeria";
   image: string;
   alt: string;
 };
@@ -17,31 +14,31 @@ type Category = {
 const categories: Category[] = [
   {
     title: "Moda Feminina",
-    text: "Roupas para diferentes estilos, momentos e ocasiões.",
+    text: "Vestidos, calças, blusas e looks para diferentes momentos.",
     to: "/feminino",
-    image: catFeminino,
-    alt: "Arara com peças femininas em tons neutros",
+    image: storePhotos.femininoVestidos.src,
+    alt: storePhotos.femininoVestidos.alt,
   },
   {
     title: "Moda Infantil",
-    text: "Peças bonitas, confortáveis e pensadas para acompanhar cada fase.",
+    text: "Do enxoval de bebê aos vestidos de festa das crianças.",
     to: "/infantil",
-    image: catInfantil,
-    alt: "Pilha de roupas infantis dobradas em tons neutros",
+    image: storePhotos.infantilFesta.src,
+    alt: storePhotos.infantilFesta.alt,
   },
   {
     title: "Novidades",
-    text: "Os últimos produtos que chegaram à loja.",
+    text: "O que a loja está publicando agora no Instagram.",
     to: "/novidades",
-    image: catNovidades,
-    alt: "Peças de roupa novas dispostas sobre uma poltrona clara",
+    image: storePhotos.vitrineManequins.src,
+    alt: storePhotos.vitrineManequins.alt,
   },
   {
-    title: "Ofertas",
-    text: "Seleção de oportunidades e preços especiais.",
-    to: "/novidades",
-    image: catOfertas,
-    alt: "Roupas dobradas com etiqueta de papel",
+    title: "Galeria da loja",
+    text: "Fotos reais do interior, das araras e da fachada.",
+    to: "/galeria",
+    image: storePhotos.interiorAraras.src,
+    alt: storePhotos.interiorAraras.alt,
   },
 ];
 
@@ -58,23 +55,18 @@ export function CategoryGrid() {
         {categories.map((category) => (
           <li key={category.title}>
             <Link to={category.to} className="group block">
-              <div className="aspect-3/4 overflow-hidden bg-secondary">
-                <img
-                  src={category.image}
-                  alt={category.alt}
-                  width={1024}
-                  height={1280}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                />
-              </div>
+              <SmartImage
+                src={category.image}
+                alt={category.alt}
+                className="aspect-3/4"
+                imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
               <h3 className="mt-4 text-xl">{category.title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 {category.text}
               </p>
               <span className="link-underline mt-3 inline-block text-[0.75rem] uppercase tracking-[0.16em] text-foreground">
-                Ver peças
+                Ver mais
               </span>
             </Link>
           </li>

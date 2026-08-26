@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as FemininoRouteImport } from './routes/feminino'
+import { Route as GaleriaRouteImport } from './routes/galeria'
 import { Route as InfantilRouteImport } from './routes/infantil'
 import { Route as NovidadesRouteImport } from './routes/novidades'
 import { Route as SobreRouteImport } from './routes/sobre'
@@ -29,6 +30,11 @@ const ContatoRoute = ContatoRouteImport.update({
 const FemininoRoute = FemininoRouteImport.update({
   id: '/feminino',
   path: '/feminino',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InfantilRoute = InfantilRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/feminino': typeof FemininoRoute
+  '/galeria': typeof GaleriaRoute
   '/infantil': typeof InfantilRoute
   '/novidades': typeof NovidadesRoute
   '/sobre': typeof SobreRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/feminino': typeof FemininoRoute
+  '/galeria': typeof GaleriaRoute
   '/infantil': typeof InfantilRoute
   '/novidades': typeof NovidadesRoute
   '/sobre': typeof SobreRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
   '/feminino': typeof FemininoRoute
+  '/galeria': typeof GaleriaRoute
   '/infantil': typeof InfantilRoute
   '/novidades': typeof NovidadesRoute
   '/sobre': typeof SobreRoute
@@ -75,14 +84,28 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/contato' | '/feminino' | '/infantil' | '/novidades' | '/sobre'
+    | '/'
+    | '/contato'
+    | '/feminino'
+    | '/galeria'
+    | '/infantil'
+    | '/novidades'
+    | '/sobre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contato' | '/feminino' | '/infantil' | '/novidades' | '/sobre'
+  to:
+    | '/'
+    | '/contato'
+    | '/feminino'
+    | '/galeria'
+    | '/infantil'
+    | '/novidades'
+    | '/sobre'
   id:
     | '__root__'
     | '/'
     | '/contato'
     | '/feminino'
+    | '/galeria'
     | '/infantil'
     | '/novidades'
     | '/sobre'
@@ -92,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
   FemininoRoute: typeof FemininoRoute
+  GaleriaRoute: typeof GaleriaRoute
   InfantilRoute: typeof InfantilRoute
   NovidadesRoute: typeof NovidadesRoute
   SobreRoute: typeof SobreRoute
@@ -118,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/feminino'
       fullPath: '/feminino'
       preLoaderRoute: typeof FemininoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/infantil': {
@@ -148,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
   FemininoRoute: FemininoRoute,
+  GaleriaRoute: GaleriaRoute,
   InfantilRoute: InfantilRoute,
   NovidadesRoute: NovidadesRoute,
   SobreRoute: SobreRoute,
