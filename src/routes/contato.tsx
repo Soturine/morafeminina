@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { StoreSection } from "@/components/StoreSection";
+import { GooglePhotos } from "@/components/GooglePhotos";
+import { InstagramSection } from "@/components/InstagramSection";
 
 const title = "Localização e Contato | Mora Moda Feminina e Infantil em Jacareí";
 const description =
@@ -22,6 +24,10 @@ export const Route = createFileRoute("/contato")({
 
 function ContatoPage() {
   return (
-    <StoreSection as="h1" eyebrow="Localização e contato" title="Venha conhecer a Mora Moda" />
+    <>
+      <StoreSection as="h1" eyebrow="Localização e contato" title="Venha conhecer a Mora Moda" />
+      <GooglePhotos />
+      <InstagramSection />
+    </>
   );
 }

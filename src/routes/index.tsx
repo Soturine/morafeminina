@@ -10,6 +10,8 @@ import { CategoryGrid } from "@/components/CategoryGrid";
 import { Highlights } from "@/components/Highlights";
 import { Reviews } from "@/components/Reviews";
 import { StoreSection } from "@/components/StoreSection";
+import { InstagramSection } from "@/components/InstagramSection";
+import { GooglePhotos } from "@/components/GooglePhotos";
 import { ProductCard } from "@/components/ProductCard";
 import { EmptyState } from "@/components/EmptyState";
 import { Section, SectionHeading } from "@/components/Section";
@@ -150,6 +152,8 @@ function Index() {
       <Highlights />
       <Reviews />
       <AboutTeaser />
+      <InstagramSection />
+      <GooglePhotos />
       <StoreSection />
     </>
   );
