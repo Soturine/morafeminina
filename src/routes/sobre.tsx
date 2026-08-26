@@ -69,10 +69,11 @@ function SobrePage() {
 
           <div className="overflow-hidden bg-secondary">
             <img
-              src={gallery[0].src}
-              alt={gallery[0].alt}
-              width={gallery[0].w}
-              height={gallery[0].h}
+              src={lojaInterior}
+              alt="Interior da loja com araras e peças em tons neutros"
+              width={1408}
+              height={1008}
+
               loading="lazy"
               decoding="async"
               className="h-full w-full object-cover"
