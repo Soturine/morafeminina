@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
-import heroImage from "@/assets/hero.jpg";
-import lojaInterior from "@/assets/loja-interior.jpg";
+import { storePhotos } from "@/data/store-photos";
+import { SmartImage } from "@/components/SmartImage";
 import { site } from "@/data/site";
 import { getFeatured } from "@/data/products";
 import { ButtonLink } from "@/components/Button";
@@ -11,7 +11,7 @@ import { Highlights } from "@/components/Highlights";
 import { Reviews } from "@/components/Reviews";
 import { StoreSection } from "@/components/StoreSection";
 import { InstagramSection } from "@/components/InstagramSection";
-import { GooglePhotos } from "@/components/GooglePhotos";
+import { PhotoGallery } from "@/components/PhotoGallery";
 import { ProductCard } from "@/components/ProductCard";
 import { EmptyState } from "@/components/EmptyState";
 import { Section, SectionHeading } from "@/components/Section";
@@ -61,17 +61,14 @@ function Hero() {
         </div>
 
         <div className="relative">
-          <div className="aspect-4/3 overflow-hidden bg-secondary lg:aspect-3/4">
-            <img
-              src={heroImage}
-              alt="Cliente vestindo uma peça de moda feminina em tom neutro"
-              width={1600}
-              height={1200}
-              fetchPriority="high"
-              decoding="async"
-              className="h-full w-full object-cover"
-            />
-          </div>
+          <SmartImage
+            src={storePhotos.vitrineManequins.src}
+            alt={storePhotos.vitrineManequins.alt}
+            width={storePhotos.vitrineManequins.width}
+            height={storePhotos.vitrineManequins.height}
+            eager
+            className="aspect-4/3 lg:aspect-3/4"
+          />
         </div>
       </div>
     </section>
@@ -118,17 +115,13 @@ function AboutTeaser() {
   return (
     <Section tone="default">
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div className="overflow-hidden bg-secondary">
-          <img
-            src={lojaInterior}
-            alt="Interior de loja de roupas com araras e peças em tons neutros"
-            width={1408}
-            height={1008}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover"
-          />
-        </div>
+        <SmartImage
+          src={storePhotos.interiorLoja.src}
+          alt={storePhotos.interiorLoja.alt}
+          width={storePhotos.interiorLoja.width}
+          height={storePhotos.interiorLoja.height}
+          className="aspect-4/3"
+        />
         <div>
           <SectionHeading eyebrow="Sobre a Mora Moda" title={site.about.title} />
           <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground">
@@ -153,7 +146,7 @@ function Index() {
       <Reviews />
       <AboutTeaser />
       <InstagramSection />
-      <GooglePhotos />
+      <PhotoGallery initialCount={8} showLoadMore={false} />
       <StoreSection />
     </>
   );
