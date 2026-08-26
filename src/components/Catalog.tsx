@@ -39,13 +39,7 @@ function Chip({
   );
 }
 
-function FilterGroup({
-  legend,
-  children,
-}: {
-  legend: string;
-  children: React.ReactNode;
-}) {
+function FilterGroup({ legend, children }: { legend: string; children: React.ReactNode }) {
   return (
     <fieldset className="min-w-0">
       <legend className="eyebrow mb-3">{legend}</legend>
@@ -69,7 +63,10 @@ export function Catalog({
   const [onlyNew, setOnlyNew] = useState(false);
 
   const categories = useMemo(
-    () => Array.from(new Set(products.map((p) => p.category))).sort((a, b) => a.localeCompare(b, "pt-BR")),
+    () =>
+      Array.from(new Set(products.map((p) => p.category))).sort((a, b) =>
+        a.localeCompare(b, "pt-BR"),
+      ),
     [products],
   );
   const sizes = useMemo(
@@ -120,7 +117,11 @@ export function Catalog({
   }, [products, category, size, price, age, onlyNew, query]);
 
   const hasFilters =
-    categories.length > 1 || sizes.length > 0 || priceRanges.length > 1 || hasNew || (showAgeFilter && ages.length > 0);
+    categories.length > 1 ||
+    sizes.length > 0 ||
+    priceRanges.length > 1 ||
+    hasNew ||
+    (showAgeFilter && ages.length > 0);
 
   if (products.length === 0) {
     return <EmptyState />;

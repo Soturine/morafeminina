@@ -30,8 +30,7 @@ export const site = {
   },
 
   whatsapp: {
-    defaultMessage:
-      "Olá! Vim pelo site da Moda Moda e gostaria de conhecer as opções disponíveis.",
+    defaultMessage: "Olá! Vim pelo site da Moda Moda e gostaria de conhecer as opções disponíveis.",
   },
 
   /** Links externos. Deixe string vazia para ocultar o link na interface. */
@@ -56,11 +55,7 @@ export const site = {
     source: "Google",
   },
 
-  services: [
-    "Compras na loja",
-    "Retirada na loja",
-    "Entrega",
-  ],
+  services: ["Compras na loja", "Retirada na loja", "Entrega"],
 
   /**
    * Horários de funcionamento. Enquanto a lista estiver vazia, o site exibe

@@ -70,7 +70,9 @@ export function CategoryGrid() {
                 />
               </div>
               <h3 className="mt-4 text-xl">{category.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{category.text}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                {category.text}
+              </p>
               <span className="link-underline mt-3 inline-block text-[0.75rem] uppercase tracking-[0.16em] text-foreground">
                 Ver peças
               </span>

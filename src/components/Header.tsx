@@ -25,7 +25,9 @@ export function Header() {
     <header
       className={cn(
         "sticky top-0 z-50 border-b transition-colors duration-300",
-        scrolled ? "border-border bg-background/95 backdrop-blur" : "border-transparent bg-background",
+        scrolled
+          ? "border-border bg-background/95 backdrop-blur"
+          : "border-transparent bg-background",
       )}
     >
       <div className="shell grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 md:h-20 lg:grid-cols-[auto_minmax(0,1fr)_auto]">
@@ -54,7 +56,12 @@ export function Header() {
         </nav>
 
         <div className="flex items-center justify-end gap-2">
-          <WhatsAppLink variant="primary" size="sm" className="hidden sm:inline-flex" context="header">
+          <WhatsAppLink
+            variant="primary"
+            size="sm"
+            className="hidden sm:inline-flex"
+            context="header"
+          >
             Falar no WhatsApp
           </WhatsAppLink>
 
@@ -66,8 +73,11 @@ export function Header() {
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             className="inline-flex h-11 w-11 items-center justify-center text-foreground lg:hidden"
           >
-            {open ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
-
+            {open ? (
+              <X className="h-5 w-5" aria-hidden="true" />
+            ) : (
+              <Menu className="h-5 w-5" aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
@@ -89,7 +99,12 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <WhatsAppLink variant="primary" size="md" className="mt-4 w-full" context="header_mobile">
+            <WhatsAppLink
+              variant="primary"
+              size="md"
+              className="mt-4 w-full"
+              context="header_mobile"
+            >
               Falar no WhatsApp
             </WhatsAppLink>
           </nav>

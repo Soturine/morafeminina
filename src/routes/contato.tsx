@@ -22,10 +22,6 @@ export const Route = createFileRoute("/contato")({
 
 function ContatoPage() {
   return (
-    <StoreSection
-      as="h1"
-      eyebrow="Localização e contato"
-      title="Venha conhecer a Moda Moda"
-    />
+    <StoreSection as="h1" eyebrow="Localização e contato" title="Venha conhecer a Moda Moda" />
   );
 }

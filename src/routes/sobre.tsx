@@ -32,7 +32,12 @@ export const Route = createFileRoute("/sobre")({
  * araras, equipe) mantendo as mesmas proporções.
  */
 const gallery = [
-  { src: lojaInterior, alt: "Interior da loja com araras e peças em tons neutros", w: 1408, h: 1008 },
+  {
+    src: lojaInterior,
+    alt: "Interior da loja com araras e peças em tons neutros",
+    w: 1408,
+    h: 1008,
+  },
   { src: catFeminino, alt: "Arara com peças femininas", w: 1024, h: 1280 },
   { src: detalhe, alt: "Detalhe dos tecidos das peças", w: 1200, h: 900 },
 ];

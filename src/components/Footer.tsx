@@ -12,7 +12,8 @@ export function Footer() {
         <div>
           <p className="font-display text-2xl">Moda Moda Feminina</p>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            Moda feminina e infantil em Jacareí - SP, com variedade, qualidade e atendimento próximo.
+            Moda feminina e infantil em Jacareí - SP, com variedade, qualidade e atendimento
+            próximo.
           </p>
         </div>
 

@@ -8,7 +8,11 @@ import { Section, SectionHeading } from "@/components/Section";
 
 const purchaseOptions = [
   { icon: Store, label: "Compre na loja", text: "Atendimento presencial em Jacareí - SP." },
-  { icon: PackageCheck, label: "Retire na loja", text: "Escolha pelo WhatsApp e retire quando puder." },
+  {
+    icon: PackageCheck,
+    label: "Retire na loja",
+    text: "Escolha pelo WhatsApp e retire quando puder.",
+  },
   { icon: Truck, label: "Entrega", text: "Consulte disponibilidade e condições de entrega." },
 ];
 
@@ -52,7 +56,10 @@ export function StoreSection({
               <div className="min-w-0">
                 <h3 className="text-lg">WhatsApp e telefone</h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  <a href={`tel:${site.phone.e164}`} className="link-underline hover:text-foreground">
+                  <a
+                    href={`tel:${site.phone.e164}`}
+                    className="link-underline hover:text-foreground"
+                  >
                     {site.phone.display}
                   </a>
                 </p>
