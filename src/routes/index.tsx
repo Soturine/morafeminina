@@ -14,7 +14,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { EmptyState } from "@/components/EmptyState";
 import { Section, SectionHeading } from "@/components/Section";
 
-const title = "Moda Moda Feminina | Moda Feminina e Infantil em Jacareí";
+const title = "Mora Moda Feminina e Infantil | Moda em Jacareí";
 const description =
   "Moda feminina e infantil em Jacareí com variedade, qualidade e ótimos preços. Compre na loja, consulte retirada ou entrega e fale conosco pelo WhatsApp.";
 
@@ -128,7 +128,7 @@ function AboutTeaser() {
           />
         </div>
         <div>
-          <SectionHeading eyebrow="Sobre a Moda Moda" title={site.about.title} />
+          <SectionHeading eyebrow="Sobre a Mora Moda" title={site.about.title} />
           <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground">
             {site.about.text}
           </p>

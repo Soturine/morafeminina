@@ -8,9 +8,9 @@ import { Highlights } from "@/components/Highlights";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { ButtonLink } from "@/components/Button";
 
-const title = "Sobre a Moda Moda | Loja de Roupas em Jacareí";
+const title = "Sobre a Mora Moda | Loja de Roupas em Jacareí";
 const description =
-  "Conheça a Moda Moda Feminina: variedade, qualidade e preços acessíveis em moda feminina e infantil para as famílias de Jacareí - SP.";
+  "Conheça a Mora Moda Feminina e Infantil: variedade, qualidade e preços acessíveis em moda feminina e infantil para as famílias de Jacareí - SP.";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
@@ -48,7 +48,7 @@ function SobrePage() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
-            <SectionHeading eyebrow="Sobre a Moda Moda" as="h1" title={site.about.title} />
+            <SectionHeading eyebrow="Sobre a Mora Moda" as="h1" title={site.about.title} />
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground">
               {site.about.text}
             </p>

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { StoreSection } from "@/components/StoreSection";
 
-const title = "Localização e Contato | Moda Moda Feminina em Jacareí";
+const title = "Localização e Contato | Mora Moda Feminina e Infantil em Jacareí";
 const description =
-  "Moda Moda Feminina fica na R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP. Compre na loja, retire seu pedido ou consulte entrega. WhatsApp (12) 98145-3977.";
+  "Mora Moda fica na R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP. Compre na loja, retire seu pedido ou consulte entrega. WhatsApp (12) 98145-3977.";
 
 export const Route = createFileRoute("/contato")({
   head: () => ({
@@ -22,6 +22,6 @@ export const Route = createFileRoute("/contato")({
 
 function ContatoPage() {
   return (
-    <StoreSection as="h1" eyebrow="Localização e contato" title="Venha conhecer a Moda Moda" />
+    <StoreSection as="h1" eyebrow="Localização e contato" title="Venha conhecer a Mora Moda" />
   );
 }

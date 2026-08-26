@@ -5,9 +5,9 @@ import { Catalog } from "@/components/Catalog";
 import { Section, SectionHeading } from "@/components/Section";
 import { track } from "@/lib/analytics";
 
-const title = "Moda Feminina em Jacareí | Moda Moda Feminina";
+const title = "Moda Feminina em Jacareí | Mora Moda Feminina e Infantil";
 const description =
-  "Vestidos, blusas, conjuntos e calças femininas na Moda Moda, em Jacareí - SP. Veja as peças e fale no WhatsApp para tamanhos, cores e disponibilidade.";
+  "Vestidos, blusas, conjuntos e calças femininas na Mora Moda, em Jacareí - SP. Veja as peças e fale no WhatsApp para tamanhos, cores e disponibilidade.";
 
 export const Route = createFileRoute("/feminino")({
   head: () => ({

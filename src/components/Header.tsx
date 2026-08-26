@@ -35,7 +35,7 @@ export function Header() {
           to="/"
           className="min-w-0 font-display text-2xl leading-none tracking-tight text-foreground md:text-[1.75rem]"
         >
-          Moda Moda
+          Mora Moda
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden justify-center lg:flex">

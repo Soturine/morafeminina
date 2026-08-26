@@ -6,5 +6,5 @@ export function whatsappUrl(message: string = site.whatsapp.defaultMessage): str
 }
 
 export function productMessage(productName: string): string {
-  return `Olá! Vi a peça ${productName} no site da Moda Moda e gostaria de saber mais sobre tamanhos, cores e disponibilidade.`;
+  return `Olá! Vi a peça ${productName} no site da Mora Moda e gostaria de saber mais sobre tamanhos, cores e disponibilidade.`;
 }
