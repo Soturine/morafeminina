@@ -1,16 +1,16 @@
-import produto1 from "@/assets/produto-1.jpg";
-import produto2 from "@/assets/produto-2.jpg";
-import produto3 from "@/assets/produto-3.jpg";
-import produto4 from "@/assets/produto-4.jpg";
-import produto5 from "@/assets/produto-5.jpg";
-import produto6 from "@/assets/produto-6.jpg";
+import { storePhotos } from "@/data/store-photos";
 
 /**
- * Catálogo demonstrativo.
+ * Peças em destaque na loja.
+ *
+ * Todas as fotos são reais (galeria pública da loja). Não há preços, tamanhos
+ * ou estoque cadastrados porque essas informações não foram fornecidas pela
+ * loja — os campos existem no tipo e a interface se adapta quando forem
+ * preenchidos. Nunca preencha com valores estimados.
  *
  * Esta é a única fonte de dados de produtos do site. Para migrar futuramente
- * para um backend (Supabase ou outro), basta substituir `getProducts()` por
- * uma chamada remota que devolva o mesmo tipo `Product` — a interface não muda.
+ * para um backend basta substituir `getProducts()` por uma chamada remota que
+ * devolva o mesmo tipo `Product`.
  */
 
 export type Segment = "feminino" | "infantil";
@@ -36,71 +36,68 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    id: "vestido-midi-transpassado",
-    name: "Vestido midi transpassado",
+    id: "vestidos-femininos",
+    name: "Vestidos femininos",
     segment: "feminino",
     category: "Vestidos",
-    price: 159.9,
-    sizes: ["P", "M", "G"],
-    image: produto1,
-    imageAlt: "Vestido midi transpassado em tom cru",
-    isNew: true,
+    image: storePhotos.femininoVestidos.src,
+    imageAlt: storePhotos.femininoVestidos.alt,
   },
   {
-    id: "conjunto-tricot-canelado",
-    name: "Conjunto tricot canelado",
-    segment: "feminino",
-    category: "Conjuntos",
-    price: 189.9,
-    sizes: ["P", "M", "G", "GG"],
-    image: produto3,
-    imageAlt: "Conjunto de tricot canelado em tom areia",
-  },
-  {
-    id: "calca-pantalona-alfaiataria",
-    name: "Calça pantalona de alfaiataria",
+    id: "calcas-femininas",
+    name: "Calças femininas",
     segment: "feminino",
     category: "Calças",
-    price: 129.9,
-    sizes: ["36", "38", "40", "42"],
-    image: produto4,
-    imageAlt: "Calça pantalona de alfaiataria em tom caramelo claro",
-    isOffer: true,
+    image: storePhotos.femininoCalcas.src,
+    imageAlt: storePhotos.femininoCalcas.alt,
   },
   {
-    id: "camisa-infantil-algodao",
-    name: "Camisa infantil em algodão",
-    segment: "infantil",
-    category: "Camisas",
-    price: 79.9,
-    sizes: ["2", "4", "6"],
-    ageRange: "2 a 6 anos",
-    image: produto2,
-    imageAlt: "Camisa infantil de algodão em tom terracota",
+    id: "blusas-e-looks",
+    name: "Blusas e looks do dia a dia",
+    segment: "feminino",
+    category: "Blusas",
+    image: storePhotos.femininoLook.src,
+    imageAlt: storePhotos.femininoLook.alt,
   },
   {
-    id: "vestido-infantil-manga-bufante",
-    name: "Vestido infantil manga bufante",
+    id: "looks-de-vitrine",
+    name: "Looks montados na vitrine",
+    segment: "feminino",
+    category: "Looks",
+    image: storePhotos.manequimLook.src,
+    imageAlt: storePhotos.manequimLook.alt,
+  },
+  {
+    id: "vestidos-infantis-de-festa",
+    name: "Vestidos infantis de festa",
     segment: "infantil",
     category: "Vestidos",
-    price: 89.9,
-    sizes: ["1", "2", "3"],
-    ageRange: "1 a 3 anos",
-    image: produto5,
-    imageAlt: "Vestido infantil de manga bufante em tom baunilha",
-    isNew: true,
+    image: storePhotos.infantilFesta.src,
+    imageAlt: storePhotos.infantilFesta.alt,
   },
   {
-    id: "conjunto-infantil-moletom",
-    name: "Conjunto infantil de moletom",
+    id: "vestidos-infantis-festa-2",
+    name: "Vestidos infantis para ocasiões especiais",
     segment: "infantil",
-    category: "Conjuntos",
-    price: 99.9,
-    sizes: ["4", "6", "8"],
-    ageRange: "4 a 8 anos",
-    image: produto6,
-    imageAlt: "Conjunto infantil de moletom terracota com calça off-white",
-    isOffer: true,
+    category: "Vestidos",
+    image: storePhotos.infantilFesta2.src,
+    imageAlt: storePhotos.infantilFesta2.alt,
+  },
+  {
+    id: "enxoval-e-bodies",
+    name: "Bodies e enxoval de bebê",
+    segment: "infantil",
+    category: "Bebê",
+    image: storePhotos.infantilBodies.src,
+    imageAlt: storePhotos.infantilBodies.alt,
+  },
+  {
+    id: "roupas-infantis",
+    name: "Roupas e itens infantis",
+    segment: "infantil",
+    category: "Infantil",
+    image: storePhotos.enxovalPrateleiras.src,
+    imageAlt: storePhotos.enxovalPrateleiras.alt,
   },
 ];
 
