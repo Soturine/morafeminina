@@ -107,15 +107,15 @@ export function ProductCard({ product }: { product: Product }) {
         <WhatsAppLink
           variant="outline"
           size="sm"
-          className="mt-auto w-full pt-0 lg:hidden"
+          className="mt-4 w-full min-w-0 whitespace-normal px-2 text-center text-[0.6875rem] leading-tight tracking-[0.1em] lg:hidden"
           message={productMessage(product.name)}
           context={product.id}
           onClick={() => track("product_interest_click", { product: product.id })}
         >
-          Comprar pelo WhatsApp
+          Comprar no WhatsApp
         </WhatsAppLink>
 
-        <span className="mt-4 hidden lg:block" aria-hidden="true" />
+        <span className="mt-auto hidden lg:block" aria-hidden="true" />
       </div>
     </article>
   );
