@@ -109,12 +109,13 @@ export function ProductCard({ product }: { product: Product }) {
             variant="outline"
             size="sm"
             className="w-full min-w-0 whitespace-normal px-2 text-center text-[0.6875rem] leading-tight tracking-[0.1em]"
-          message={productMessage(product.name)}
-          context={product.id}
-          onClick={() => track("product_interest_click", { product: product.id })}
-        >
-          Comprar no WhatsApp
-        </WhatsAppLink>
+            message={productMessage(product.name)}
+            context={product.id}
+            onClick={() => track("product_interest_click", { product: product.id })}
+          >
+            Comprar no WhatsApp
+          </WhatsAppLink>
+        </div>
 
         <span className="mt-auto hidden lg:block" aria-hidden="true" />
       </div>
