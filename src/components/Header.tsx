@@ -66,8 +66,8 @@ export function Header() {
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             className="inline-flex h-11 w-11 items-center justify-center text-foreground lg:hidden"
           >
-            {open ? <Menu className="hidden" /> : null}
             {open ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
+
           </button>
         </div>
       </div>
