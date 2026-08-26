@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
 import { storePhotos } from "@/data/store-photos";
+import heroModelo from "@/assets/hero-modelo.jpg.asset.json";
 import { SmartImage } from "@/components/SmartImage";
 import { site } from "@/data/site";
 import { getFeatured, PRICE_DISCLAIMER } from "@/data/products";
