@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
 import { storePhotos } from "@/data/store-photos";
-import heroModelo from "@/assets/hero-modelo.jpg.asset.json";
 import { SmartImage } from "@/components/SmartImage";
 import { site } from "@/data/site";
 import { getFeatured, PRICE_DISCLAIMER } from "@/data/products";
@@ -77,7 +76,7 @@ function Hero() {
 
         <div className="relative">
           <SmartImage
-            src={heroModelo.url}
+            src="/__l5e/assets-v1/c73060c5-793c-4ee4-bfc7-b58fdcce5e85/hero-modelo.jpg"
             alt="Modelo com vestido de linho em ambiente claro e sofisticado"
             width={1008}
             height={1264}
