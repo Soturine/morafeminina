@@ -206,7 +206,7 @@ export function ProductZoom({
           src={src}
           alt={alt}
           draggable={false}
-          className="absolute left-1/2 top-1/2 max-h-full max-w-full -translate-x-1/2 -translate-y-1/2 object-contain"
+          className="absolute left-1/2 top-1/2 max-h-full max-w-full object-contain"
           style={{
             transform: `translate(calc(-50% + ${offset.x}px), calc(-50% + ${offset.y}px)) scale(${zoom})`,
           }}
