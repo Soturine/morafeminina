@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FemininoRouteImport } from './routes/feminino'
+import { Route as InfantilRouteImport } from './routes/infantil'
+import { Route as NovidadesRouteImport } from './routes/novidades'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FemininoRoute = FemininoRouteImport.update({
+  id: '/feminino',
+  path: '/feminino',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InfantilRoute = InfantilRouteImport.update({
+  id: '/infantil',
+  path: '/infantil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovidadesRoute = NovidadesRouteImport.update({
+  id: '/novidades',
+  path: '/novidades',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/feminino': typeof FemininoRoute
+  '/infantil': typeof InfantilRoute
+  '/novidades': typeof NovidadesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/feminino': typeof FemininoRoute
+  '/infantil': typeof InfantilRoute
+  '/novidades': typeof NovidadesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/feminino': typeof FemininoRoute
+  '/infantil': typeof InfantilRoute
+  '/novidades': typeof NovidadesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/feminino' | '/infantil' | '/novidades'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/feminino' | '/infantil' | '/novidades'
+  id: '__root__' | '/' | '/feminino' | '/infantil' | '/novidades'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FemininoRoute: typeof FemininoRoute
+  InfantilRoute: typeof InfantilRoute
+  NovidadesRoute: typeof NovidadesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/feminino': {
+      id: '/feminino'
+      path: '/feminino'
+      fullPath: '/feminino'
+      preLoaderRoute: typeof FemininoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/infantil': {
+      id: '/infantil'
+      path: '/infantil'
+      fullPath: '/infantil'
+      preLoaderRoute: typeof InfantilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/novidades': {
+      id: '/novidades'
+      path: '/novidades'
+      fullPath: '/novidades'
+      preLoaderRoute: typeof NovidadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FemininoRoute: FemininoRoute,
+  InfantilRoute: InfantilRoute,
+  NovidadesRoute: NovidadesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
