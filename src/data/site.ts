@@ -122,6 +122,7 @@ export const navigation = [
   { label: "Feminino", to: "/feminino" },
   { label: "Infantil", to: "/infantil" },
   { label: "Novidades", to: "/novidades" },
+  { label: "Galeria", to: "/galeria" },
   { label: "Sobre", to: "/sobre" },
   { label: "Localização", to: "/contato" },
 ] as const;
