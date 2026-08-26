@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ImageOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,6 +29,17 @@ export function SmartImage({
 }) {
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const ref = useRef<HTMLImageElement>(null);
+
+  // Imagens já em cache (ou renderizadas no servidor) não disparam onLoad
+  // após a hidratação — por isso conferimos o estado real do elemento.
+  useEffect(() => {
+    const img = ref.current;
+    if (img?.complete) {
+      if (img.naturalWidth === 0) setFailed(true);
+      else setLoaded(true);
+    }
+  }, [src]);
 
   return (
     <div className={cn("relative overflow-hidden bg-secondary", className)}>
@@ -39,6 +50,7 @@ export function SmartImage({
         </div>
       ) : (
         <img
+          ref={ref}
           src={src}
           alt={alt}
           {...(width ? { width } : {})}
