@@ -8,7 +8,46 @@ import { Lightbox, type LightboxItem } from "@/components/Lightbox";
 import { Button, ButtonAnchor } from "@/components/Button";
 import { Section, SectionHeading } from "@/components/Section";
 
-type GalleryPhoto = { id: string; thumb: string; full: string; alt: string };
+type GalleryTag = "fachada" | "interior" | "feminino" | "infantil" | "bebe" | "acessorios";
+
+type GalleryPhoto = { id: string; thumb: string; full: string; alt: string; tags: GalleryTag[] };
+
+const TAG_LABELS: { id: GalleryTag; label: string }[] = [
+  { id: "fachada", label: "Fachada" },
+  { id: "interior", label: "Interior da loja" },
+  { id: "feminino", label: "Moda feminina" },
+  { id: "infantil", label: "Moda infantil" },
+  { id: "bebe", label: "Bebê e enxoval" },
+  { id: "acessorios", label: "Acessórios" },
+];
+
+/** Curadoria manual de índices da galeria pública por tema. */
+const GOOGLE_TAGS: Record<GalleryTag, number[]> = {
+  fachada: [140, 178, 179, 194],
+  interior: [110, 119, 123, 126, 127, 135, 138, 160, 161, 168, 196, 199, 206, 210, 211, 214, 219, 220, 244, 250],
+  feminino: [49, 53, 57, 64, 71, 79, 90, 96, 102, 105, 129, 131, 132, 143, 146, 147, 150, 151, 157, 158, 173, 187, 190, 197, 202, 203, 205, 207, 209, 216, 235],
+  infantil: [8, 9, 15, 18, 20, 27, 29, 33, 39, 44, 45, 48, 66, 120, 121, 125, 134, 148, 172, 175, 223, 224, 237, 249],
+  bebe: [2, 34, 50, 122, 128, 136, 137, 163, 165, 182, 191, 200, 217, 218, 227, 231, 246],
+  acessorios: [35, 184, 185, 186, 212, 215, 221, 228, 234, 241, 245],
+};
+
+const OWN_TAGS: Record<string, GalleryTag[]> = {
+  fachada: ["fachada"],
+  "fachada-lateral": ["fachada"],
+  "interior-araras": ["interior", "feminino"],
+  "interior-loja": ["interior"],
+  "interior-infantil": ["interior", "infantil"],
+  "feminino-vestidos": ["feminino"],
+  "feminino-calcas": ["feminino"],
+  "feminino-look": ["feminino"],
+  "vitrine-manequins": ["feminino", "interior"],
+  "manequim-look": ["feminino"],
+  "infantil-bodies": ["infantil", "bebe"],
+  "infantil-festa": ["infantil"],
+  "infantil-festa-2": ["infantil"],
+  "enxoval-prateleiras": ["bebe"],
+  acessorios: ["acessorios"],
+};
 
 /** Fotos próprias primeiro, depois a galeria pública do Google (camada trocável). */
 function buildPhotos(): GalleryPhoto[] {
@@ -17,6 +56,7 @@ function buildPhotos(): GalleryPhoto[] {
     thumb: photo.src,
     full: photo.src,
     alt: photo.alt,
+    tags: OWN_TAGS[photo.id] ?? [],
   }));
 
   const google: GalleryPhoto[] = googleMapsPhotos.map((photo, i) => ({
@@ -24,6 +64,7 @@ function buildPhotos(): GalleryPhoto[] {
     thumb: googlePhotoUrl(photo, 600, 600),
     full: googlePhotoUrl(photo, 1400, 1400),
     alt: `Foto ${i + 1} da ${site.shortName} publicada na galeria do Google Maps`,
+    tags: TAG_LABELS.filter((t) => GOOGLE_TAGS[t.id].includes(i)).map((t) => t.id),
   }));
 
   return [...own, ...google];
