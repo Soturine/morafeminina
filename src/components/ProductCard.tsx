@@ -1,6 +1,8 @@
-import { MessageCircle } from "lucide-react";
+import { useState } from "react";
+import { MessageCircle, ZoomIn } from "lucide-react";
 import { formatPrice, installments, type Product } from "@/data/products";
 import { SmartImage } from "@/components/SmartImage";
+import { ProductZoom } from "@/components/ProductZoom";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { productMessage } from "@/lib/whatsapp";
 import { track } from "@/lib/analytics";
