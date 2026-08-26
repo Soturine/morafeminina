@@ -86,8 +86,7 @@ function Hero() {
           <SmartImage
             src={storePhotos.femininoVestidos.src}
             alt={storePhotos.femininoVestidos.alt}
-            className="frame absolute -bottom-6 -left-6 hidden w-40 lg:block xl:w-48"
-            imgClassName="aspect-3/4"
+            className="frame absolute -bottom-6 -left-6 hidden aspect-3/4 w-40 border-4 border-background lg:block xl:w-48"
           />
         </div>
       </div>
