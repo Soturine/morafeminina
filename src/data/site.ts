@@ -1,11 +1,11 @@
 /**
- * Fonte única de conteúdo institucional da Moda Moda Feminina.
+ * Fonte única de conteúdo institucional da Mora Moda.
  * Altere aqui e o site inteiro é atualizado.
  */
 
 export const site = {
-  name: "Moda Moda Feminina",
-  shortName: "Moda Moda",
+  name: "Mora Moda Feminina e Infantil",
+  shortName: "Mora Moda",
   tagline: "Moda feminina e infantil em Jacareí - SP",
   city: "Jacareí",
   state: "SP",
@@ -30,23 +30,25 @@ export const site = {
   },
 
   whatsapp: {
-    defaultMessage: "Olá! Vim pelo site da Moda Moda e gostaria de conhecer as opções disponíveis.",
+    defaultMessage: "Olá! Vim pelo site da Mora Moda e gostaria de conhecer as opções disponíveis.",
   },
 
   /** Links externos. Deixe string vazia para ocultar o link na interface. */
   links: {
     facebook: "https://www.facebook.com/",
-    /** Cole aqui a URL oficial do perfil no Google Maps quando disponível. */
-    googleProfile: "",
+    instagram: "https://www.instagram.com/mora.feminina/",
+    /** Perfil oficial no Google Maps. */
+    googleProfile:
+      "https://www.google.com/maps/place/Sonho+de+crian%C3%A7a+(MORA+MODA+FEMININA+E+INFANTIL)/@-23.3026357,-45.9319489,75m/data=!3m1!1e3!4m6!3m5!1s0x94cdcbc2b61efd17:0x6d5829618673a661!8m2!3d-23.3026985!4d-45.9318535!16s%2Fg%2F11fm794vnm!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgyMy4wIKXMDSoASAFQAw%3D%3D",
     /** URL de rota do Google Maps (usada em "Como chegar"). */
     googleDirections:
       "https://www.google.com/maps/dir/?api=1&destination=" +
-      encodeURIComponent("R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP, 12312-190"),
+      encodeURIComponent("Mora Moda Feminina e Infantil, R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP, 12312-190"),
     /** Mapa incorporado (sem chave de API, sem cookies de login). */
     googleMapEmbed:
       "https://www.google.com/maps?q=" +
-      encodeURIComponent("R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP, 12312-190") +
-      "&output=embed",
+      encodeURIComponent("Mora Moda Feminina e Infantil, R. Santo Ivo, 504 - Cidade Salvador, Jacareí - SP, 12312-190") +
+      "&z=19&output=embed",
   },
 
   rating: {
@@ -73,7 +75,7 @@ export const site = {
 
   about: {
     title: "Moda para todas as fases",
-    text: "A Moda Moda nasceu para oferecer variedade, qualidade e preços acessíveis para mulheres e famílias de Jacareí. Em nossa loja você encontra opções de moda feminina e infantil para diferentes estilos e momentos, sempre com atendimento próximo e atenção a cada cliente.",
+    text: "A Mora Moda nasceu para oferecer variedade, qualidade e preços acessíveis para mulheres e famílias de Jacareí. Em nossa loja você encontra opções de moda feminina e infantil para diferentes estilos e momentos, sempre com atendimento próximo e atenção a cada cliente.",
   },
 } as const;
 
