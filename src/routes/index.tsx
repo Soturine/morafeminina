@@ -37,15 +37,15 @@ export const Route = createFileRoute("/")({
 
 function Hero() {
   return (
-    <section className="border-b border-border bg-background">
-      <div className="shell grid items-center gap-10 py-12 md:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20">
+    <section className="surface-sand relative overflow-hidden border-b border-border">
+      <div className="shell grid items-center gap-10 py-12 md:py-16 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-24">
         <div className="fade-up max-w-xl">
           <p className="eyebrow flex items-center gap-2">
             <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
             Loja física em Jacareí - SP
           </p>
-          <h1 className="mt-5 text-balance text-4xl leading-[1.08] md:text-6xl">
-            Moda para viver todos os seus momentos.
+          <h1 className="mt-5 text-balance text-4xl leading-[1.05] md:text-6xl lg:text-[4.25rem]">
+            Moda para viver <em className="not-italic text-accent">todos</em> os seus momentos.
           </h1>
           <p className="mt-5 max-w-md text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
             Moda feminina e infantil com variedade, qualidade e preços que combinam com você.
@@ -58,6 +58,19 @@ function Hero() {
               Falar no WhatsApp
             </WhatsAppLink>
           </div>
+
+          <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-border pt-6">
+            {[
+              { k: "5,0 ★", v: "no Google" },
+              { k: "Feminino", v: "e infantil" },
+              { k: "Retirada", v: "na loja" },
+            ].map((item) => (
+              <div key={item.k}>
+                <dt className="font-display text-xl leading-none">{item.k}</dt>
+                <dd className="mt-1 text-xs text-muted-foreground">{item.v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
         <div className="relative">
@@ -67,7 +80,13 @@ function Hero() {
             width={storePhotos.vitrineManequins.width}
             height={storePhotos.vitrineManequins.height}
             eager
-            className="aspect-4/3 lg:aspect-3/4"
+            className="frame aspect-4/3 lg:aspect-3/4"
+          />
+          <SmartImage
+            src={storePhotos.femininoVestidos.src}
+            alt={storePhotos.femininoVestidos.alt}
+            className="frame absolute -bottom-6 -left-6 hidden w-40 lg:block xl:w-48"
+            imgClassName="aspect-3/4"
           />
         </div>
       </div>
@@ -99,17 +118,21 @@ function Featured() {
           <EmptyState />
         </div>
       ) : (
-        <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
-          {featured.map((product) => (
-            <li key={product.id}>
-              <ProductCard product={product} />
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 lg:grid-cols-4">
+            {featured.map((product, i) => (
+              <Reveal as="li" key={product.id} delay={i * 80}>
+                <ProductCard product={product} />
+              </Reveal>
+            ))}
+          </ul>
+          <p className="mt-6 text-xs text-muted-foreground">{PRICE_DISCLAIMER}</p>
+        </>
       )}
     </Section>
   );
 }
+
 
 function AboutTeaser() {
   return (
