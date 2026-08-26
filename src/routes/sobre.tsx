@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import lojaInterior from "@/assets/loja-interior.jpg";
-import detalhe from "@/assets/detalhe.jpg";
-import catFeminino from "@/assets/cat-feminino.jpg";
+import { storePhotos } from "@/data/store-photos";
+import { SmartImage } from "@/components/SmartImage";
 import { site } from "@/data/site";
 import { Section, SectionHeading } from "@/components/Section";
 import { Highlights } from "@/components/Highlights";
@@ -32,14 +31,10 @@ export const Route = createFileRoute("/sobre")({
  * araras, equipe) mantendo as mesmas proporções.
  */
 const gallery = [
-  {
-    src: lojaInterior,
-    alt: "Interior da loja com araras e peças em tons neutros",
-    w: 1408,
-    h: 1008,
-  },
-  { src: catFeminino, alt: "Arara com peças femininas", w: 1024, h: 1280 },
-  { src: detalhe, alt: "Detalhe dos tecidos das peças", w: 1200, h: 900 },
+  storePhotos.interiorAraras,
+  storePhotos.femininoVestidos,
+  storePhotos.interiorInfantil,
+  storePhotos.enxovalPrateleiras,
 ];
 
 function SobrePage() {
@@ -72,33 +67,26 @@ function SobrePage() {
             </div>
           </div>
 
-          <div className="overflow-hidden bg-secondary">
-            <img
-              src={lojaInterior}
-              alt="Interior da loja com araras e peças em tons neutros"
-              width={1408}
-              height={1008}
-
-              loading="lazy"
-              decoding="async"
-              className="h-full w-full object-cover"
-            />
-          </div>
+          <SmartImage
+            src={storePhotos.fachada.src}
+            alt={storePhotos.fachada.alt}
+            width={storePhotos.fachada.width}
+            height={storePhotos.fachada.height}
+            className="aspect-3/4"
+          />
         </div>
       </Section>
 
       <Section tone="default" className="pt-0">
         <ul className="grid gap-5 sm:grid-cols-2">
-          {gallery.slice(1).map((item) => (
-            <li key={item.alt} className="aspect-4/3 overflow-hidden bg-secondary">
-              <img
+          {gallery.map((item) => (
+            <li key={item.id}>
+              <SmartImage
                 src={item.src}
                 alt={item.alt}
-                width={item.w}
-                height={item.h}
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover"
+                width={item.width}
+                height={item.height}
+                className="aspect-4/3"
               />
             </li>
           ))}
