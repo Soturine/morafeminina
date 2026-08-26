@@ -87,9 +87,15 @@ export function PhotoGallery({
   description?: string;
   tone?: "default" | "sand";
 }) {
-  const photos = useMemo(buildPhotos, []);
+  const all = useMemo(buildPhotos, []);
+  const [tag, setTag] = useState<GalleryTag | null>(null);
   const [visible, setVisible] = useState(initialCount);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const photos = useMemo(
+    () => (tag ? all.filter((p) => p.tags.includes(tag)) : all),
+    [all, tag],
+  );
 
   const shown = photos.slice(0, visible);
   const items: LightboxItem[] = shown.map((photo) => ({ src: photo.full, alt: photo.alt }));
