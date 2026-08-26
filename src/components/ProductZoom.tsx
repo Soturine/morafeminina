@@ -202,15 +202,20 @@ export function ProductZoom({
         className="relative flex-1 touch-none select-none overflow-hidden"
         style={{ cursor: zoom > 1 ? "grab" : "zoom-in" }}
       >
-        <img
-          src={src}
-          alt={alt}
-          draggable={false}
-          className="absolute left-1/2 top-1/2 max-h-full max-w-full object-contain"
+        <div
+          className="absolute inset-0 flex items-center justify-center"
           style={{
-            transform: `translate(calc(-50% + ${offset.x}px), calc(-50% + ${offset.y}px)) scale(${zoom})`,
+            transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
+            transformOrigin: "0 0",
           }}
-        />
+        >
+          <img
+            src={src}
+            alt={alt}
+            draggable={false}
+            className="max-h-full max-w-full object-contain"
+          />
+        </div>
       </div>
 
       <p className="p-3 text-center text-[0.7rem] text-background/70 sm:p-4">
