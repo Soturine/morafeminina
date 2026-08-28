@@ -1,6 +1,11 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import { PRICE_DISCLAIMER, type Product } from "@/data/products";
+import type { Product } from "@/domain/catalog/types";
+import {
+  PRICE_DISCLAIMER,
+  toProductViews,
+  type ProductView,
+} from "@/features/catalog/view-model";
 import { ProductCard } from "@/components/ProductCard";
 import { EmptyState } from "@/components/EmptyState";
 import { Reveal } from "@/components/Reveal";
@@ -49,6 +54,14 @@ function FilterGroup({ legend, children }: { legend: string; children: React.Rea
   );
 }
 
+function normalize(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
 export function Catalog({
   products,
   showAgeFilter = false,
@@ -56,6 +69,8 @@ export function Catalog({
   products: Product[];
   showAgeFilter?: boolean;
 }) {
+  const items: ProductView[] = useMemo(() => toProductViews(products), [products]);
+
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string | null>(null);
   const [size, setSize] = useState<string | null>(null);
@@ -65,14 +80,14 @@ export function Catalog({
 
   const categories = useMemo(
     () =>
-      Array.from(new Set(products.map((p) => p.category))).sort((a, b) =>
-        a.localeCompare(b, "pt-BR"),
-      ),
-    [products],
+      Array.from(
+        new Set(items.map((p) => p.categoryName).filter(Boolean) as string[]),
+      ).sort((a, b) => a.localeCompare(b, "pt-BR")),
+    [items],
   );
   const sizes = useMemo(() => {
     const letter = ["RN", "PP", "P", "M", "G", "GG", "XG"];
-    return Array.from(new Set(products.flatMap((p) => p.sizes ?? []))).sort((a, b) => {
+    return Array.from(new Set(items.flatMap((p) => p.sizes))).sort((a, b) => {
       const ia = letter.indexOf(a);
       const ib = letter.indexOf(b);
       if (ia !== -1 && ib !== -1) return ia - ib;
@@ -80,49 +95,44 @@ export function Catalog({
       if (ib !== -1) return 1;
       return Number(a) - Number(b);
     });
-  }, [products]);
+  }, [items]);
   const ages = useMemo(
-    () => Array.from(new Set(products.map((p) => p.ageRange).filter(Boolean) as string[])),
-    [products],
+    () => Array.from(new Set(items.map((p) => p.ageLabel).filter(Boolean) as string[])),
+    [items],
   );
   const priceRanges = useMemo(
     () =>
       PRICE_RANGES.filter((range) =>
-        products.some((p) => p.price !== undefined && p.price >= range.min && p.price < range.max),
+        items.some(
+          (p) => p.priceValue !== undefined && p.priceValue >= range.min && p.priceValue < range.max,
+        ),
       ),
-    [products],
+    [items],
   );
-  const hasNew = useMemo(() => products.some((p) => p.isNew), [products]);
+  const hasNew = useMemo(() => items.some((p) => p.isNew), [items]);
 
   const filtered = useMemo(() => {
-    const normalized = query
-      .trim()
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+    const normalized = normalize(query);
 
-    return products.filter((p) => {
-      if (category && p.category !== category) return false;
-      if (size && !(p.sizes ?? []).includes(size)) return false;
-      if (age && p.ageRange !== age) return false;
+    return items.filter((p) => {
+      if (category && p.categoryName !== category) return false;
+      if (size && !p.sizes.includes(size)) return false;
+      if (age && p.ageLabel !== age) return false;
       if (onlyNew && !p.isNew) return false;
       if (price) {
         const range = PRICE_RANGES.find((r) => r.id === price);
         if (range) {
-          if (p.price === undefined) return false;
-          if (p.price < range.min || p.price >= range.max) return false;
+          if (p.priceValue === undefined) return false;
+          if (p.priceValue < range.min || p.priceValue >= range.max) return false;
         }
       }
       if (normalized) {
-        const haystack = `${p.name} ${p.category}`
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "");
+        const haystack = normalize(`${p.name} ${p.categoryName ?? ""}`);
         if (!haystack.includes(normalized)) return false;
       }
       return true;
     });
-  }, [products, category, size, price, age, onlyNew, query]);
+  }, [items, category, size, price, age, onlyNew, query]);
 
   const hasFilters =
     categories.length > 1 ||
@@ -131,7 +141,7 @@ export function Catalog({
     hasNew ||
     (showAgeFilter && ages.length > 0);
 
-  if (products.length === 0) {
+  if (items.length === 0) {
     return <EmptyState />;
   }
 
