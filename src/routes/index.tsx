@@ -102,7 +102,8 @@ function Hero() {
 }
 
 function Featured() {
-  const featured = getFeatured();
+  const { data } = useSuspenseQuery(featuredProductsQuery(8));
+  const featured = toProductViews(data);
 
   return (
     <Section tone="default">
@@ -139,6 +140,35 @@ function Featured() {
     </Section>
   );
 }
+
+/**
+ * Mais vendidos só aparece quando existirem dados reais de venda (Mora Core).
+ * Sem eles, o repositório devolve lista vazia e a seção não é renderizada.
+ */
+function BestSellers() {
+  const { data } = useSuspenseQuery(bestSellersQuery(4));
+  const items = toProductViews(data);
+  if (items.length === 0) return null;
+
+  return (
+    <Section tone="sand">
+      <SectionHeading
+        eyebrow="Preferidos da loja"
+        title="Mais vendidos"
+        description="As peças que mais saem das araras da Mora."
+      />
+      <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 lg:grid-cols-4">
+        {items.map((product, i) => (
+          <Reveal as="li" key={product.id} delay={i * 80}>
+            <ProductCard product={product} />
+          </Reveal>
+        ))}
+      </ul>
+    </Section>
+  );
+}
+
+
 
 
 function AboutTeaser() {
