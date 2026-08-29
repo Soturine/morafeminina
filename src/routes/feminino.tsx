@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { productsQuery } from "@/features/catalog/queries";
 import { Catalog } from "@/components/Catalog";
@@ -10,11 +10,12 @@ const title = "Moda Feminina em Jacareí | Mora Moda Feminina e Infantil";
 const description =
   "Vestidos, blusas, conjuntos e calças femininas na Mora Moda, em Jacareí - SP. Veja as peças e fale no WhatsApp para tamanhos, cores e disponibilidade.";
 
-const filters = { audience: "feminino" } as const;
+/** Vitrine feminina: departamento feminino + acessórios (audiência unissex). */
+const AUDIENCES = new Set(["feminino", "unissex"]);
 
 export const Route = createFileRoute("/feminino")({
   loader: ({ context }) => {
-    context.queryClient.ensureQueryData(productsQuery(filters));
+    context.queryClient.ensureQueryData(productsQuery());
   },
   head: () => ({
     meta: [
@@ -31,7 +32,11 @@ export const Route = createFileRoute("/feminino")({
 });
 
 function FemininoPage() {
-  const { data: products } = useSuspenseQuery(productsQuery(filters));
+  const { data: all } = useSuspenseQuery(productsQuery());
+  const products = useMemo(
+    () => all.filter((p) => AUDIENCES.has(p.audience ?? "")),
+    [all],
+  );
 
   useEffect(() => {
     track("catalog_view", { segment: "feminino" });
