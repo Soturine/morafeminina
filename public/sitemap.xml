@@ -5,6 +5,70 @@
   <url><loc>/feminino</loc><priority>0.9</priority></url>
   <url><loc>/infantil</loc><priority>0.9</priority></url>
   <url><loc>/novidades</loc><priority>0.8</priority></url>
+  <url><loc>/galeria</loc><priority>0.6</priority></url>
   <url><loc>/sobre</loc><priority>0.6</priority></url>
   <url><loc>/contato</loc><priority>0.7</priority></url>
+  <url><loc>/produto/vestido-midi-fluido</loc><priority>0.5</priority></url>
+  <url><loc>/produto/vestido-manequim-verao</loc><priority>0.5</priority></url>
+  <url><loc>/produto/calca-alfaiataria</loc><priority>0.5</priority></url>
+  <url><loc>/produto/blusa-dia-a-dia</loc><priority>0.5</priority></url>
+  <url><loc>/produto/look-vitrine-completo</loc><priority>0.5</priority></url>
+  <url><loc>/produto/conjunto-araras</loc><priority>0.5</priority></url>
+  <url><loc>/produto/acessorios-femininos</loc><priority>0.5</priority></url>
+  <url><loc>/produto/vestidos-infantis-de-festa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/vestidos-infantis-festa-2</loc><priority>0.5</priority></url>
+  <url><loc>/produto/enxoval-e-bodies</loc><priority>0.5</priority></url>
+  <url><loc>/produto/enxoval-prateleiras</loc><priority>0.5</priority></url>
+  <url><loc>/produto/roupas-infantis</loc><priority>0.5</priority></url>
+  <url><loc>/produto/vestido-preto-essencial</loc><priority>0.5</priority></url>
+  <url><loc>/produto/vestido-cores-vivas</loc><priority>0.5</priority></url>
+  <url><loc>/produto/conjunto-blusa-short</loc><priority>0.5</priority></url>
+  <url><loc>/produto/moletom-feminino-cinza</loc><priority>0.5</priority></url>
+  <url><loc>/produto/jaqueta-moletom-rosa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/saia-midi-lisa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/jeans-feminino</loc><priority>0.5</priority></url>
+  <url><loc>/produto/blusas-coloridas</loc><priority>0.5</priority></url>
+  <url><loc>/produto/tenis-plataforma</loc><priority>0.5</priority></url>
+  <url><loc>/produto/rasteirinhas-femininas</loc><priority>0.5</priority></url>
+  <url><loc>/produto/toucas-trico</loc><priority>0.5</priority></url>
+  <url><loc>/produto/vestido-infantil-tule-rosa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/vestidos-festa-natal</loc><priority>0.5</priority></url>
+  <url><loc>/produto/conjunto-jeans-bebe</loc><priority>0.5</priority></url>
+  <url><loc>/produto/jardineira-vermelha</loc><priority>0.5</priority></url>
+  <url><loc>/produto/conjunto-pelucia-rosa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/moletom-infantil-laranja</loc><priority>0.5</priority></url>
+  <url><loc>/produto/moletom-bebe-azul</loc><priority>0.5</priority></url>
+  <url><loc>/produto/jaqueta-college-jeans</loc><priority>0.5</priority></url>
+  <url><loc>/produto/pijama-infantil-estampado</loc><priority>0.5</priority></url>
+  <url><loc>/produto/pijama-rosa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/manta-nuvem</loc><priority>0.5</priority></url>
+  <url><loc>/produto/sandalia-dourada-festa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/botinha-rosa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/babuche-infantil</loc><priority>0.5</priority></url>
+  <url><loc>/produto/papete-infantil</loc><priority>0.5</priority></url>
+  <url><loc>/produto/sandalias-infantis</loc><priority>0.5</priority></url>
+  <url><loc>/produto/bolsinhas-coelho</loc><priority>0.5</priority></url>
+  <url><loc>/produto/vestido-azul-babados</loc><priority>0.5</priority></url>
+  <url><loc>/produto/blusa-trico-rosa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/regata-canelada</loc><priority>0.5</priority></url>
+  <url><loc>/produto/blusa-branca-laise</loc><priority>0.5</priority></url>
+  <url><loc>/produto/camiseta-preta-onca</loc><priority>0.5</priority></url>
+  <url><loc>/produto/short-magenta</loc><priority>0.5</priority></url>
+  <url><loc>/produto/short-moletom-cinza</loc><priority>0.5</priority></url>
+  <url><loc>/produto/calca-pantalona-branca</loc><priority>0.5</priority></url>
+  <url><loc>/produto/calca-jeans-feminina</loc><priority>0.5</priority></url>
+  <url><loc>/produto/bolsa-feminina</loc><priority>0.5</priority></url>
+  <url><loc>/produto/bijuterias-cartela</loc><priority>0.5</priority></url>
+  <url><loc>/produto/bones-oculos</loc><priority>0.5</priority></url>
+  <url><loc>/produto/mochila-infantil</loc><priority>0.5</priority></url>
+  <url><loc>/produto/body-bebe-arara</loc><priority>0.5</priority></url>
+  <url><loc>/produto/enxoval-rosa</loc><priority>0.5</priority></url>
+  <url><loc>/produto/kit-bebe-azul</loc><priority>0.5</priority></url>
+  <url><loc>/produto/higiene-bebe</loc><priority>0.5</priority></url>
+  <url><loc>/produto/touca-infantil-trico</loc><priority>0.5</priority></url>
+  <url><loc>/produto/vestido-infantil-estampado</loc><priority>0.5</priority></url>
+  <url><loc>/produto/camiseta-infantil-looney</loc><priority>0.5</priority></url>
+  <url><loc>/produto/camiseta-infantil-lilas</loc><priority>0.5</priority></url>
+  <url><loc>/produto/short-jeans-infantil</loc><priority>0.5</priority></url>
+  <url><loc>/produto/conjunto-social-menino</loc><priority>0.5</priority></url>
 </urlset>

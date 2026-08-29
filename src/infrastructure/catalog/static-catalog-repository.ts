@@ -249,7 +249,7 @@ export class StaticCatalogRepository implements CatalogRepository {
   }
 
   /** Sem dados de venda não existe ranking — lista vazia é a resposta honesta. */
-  async listBestSellers(): Promise<Product[]> {
+  async listBestSellers(_options: FeaturedProductsOptions = {}): Promise<Product[]> {
     return [];
   }
 }

@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { storePhotos } from "@/data/store-photos";
 import { SmartImage } from "@/components/SmartImage";
 import { site } from "@/data/site";
-import { getFeatured, PRICE_DISCLAIMER } from "@/data/products";
+import { featuredProductsQuery, bestSellersQuery } from "@/features/catalog/queries";
+import { PRICE_DISCLAIMER, toProductViews } from "@/features/catalog/view-model";
 import { ButtonLink } from "@/components/Button";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { CategoryGrid } from "@/components/CategoryGrid";
@@ -22,6 +24,10 @@ const description =
   "Moda feminina e infantil em Jacareí com variedade, qualidade e ótimos preços. Compre na loja, consulte retirada ou entrega e fale conosco pelo WhatsApp.";
 
 export const Route = createFileRoute("/")({
+  loader: ({ context }) => {
+    context.queryClient.ensureQueryData(featuredProductsQuery(8));
+    context.queryClient.ensureQueryData(bestSellersQuery(4));
+  },
   head: () => ({
     meta: [
       { title },
@@ -35,6 +41,7 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
+
 
 function Hero() {
   return (
@@ -95,7 +102,8 @@ function Hero() {
 }
 
 function Featured() {
-  const featured = getFeatured();
+  const { data } = useSuspenseQuery(featuredProductsQuery(8));
+  const featured = toProductViews(data);
 
   return (
     <Section tone="default">
@@ -133,6 +141,35 @@ function Featured() {
   );
 }
 
+/**
+ * Mais vendidos só aparece quando existirem dados reais de venda (Mora Core).
+ * Sem eles, o repositório devolve lista vazia e a seção não é renderizada.
+ */
+function BestSellers() {
+  const { data } = useSuspenseQuery(bestSellersQuery(4));
+  const items = toProductViews(data);
+  if (items.length === 0) return null;
+
+  return (
+    <Section tone="sand">
+      <SectionHeading
+        eyebrow="Preferidos da loja"
+        title="Mais vendidos"
+        description="As peças que mais saem das araras da Mora."
+      />
+      <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 lg:grid-cols-4">
+        {items.map((product, i) => (
+          <Reveal as="li" key={product.id} delay={i * 80}>
+            <ProductCard product={product} />
+          </Reveal>
+        ))}
+      </ul>
+    </Section>
+  );
+}
+
+
+
 
 function AboutTeaser() {
   return (
@@ -165,6 +202,8 @@ function Index() {
       <Hero />
       <CategoryGrid />
       <Featured />
+      <BestSellers />
+
       <Highlights />
       <Reviews />
       <AboutTeaser />

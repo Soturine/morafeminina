@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { getNewArrivals } from "@/data/products";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { newProductsQuery } from "@/features/catalog/queries";
 import { Catalog } from "@/components/Catalog";
 import { InstagramSection } from "@/components/InstagramSection";
 import { PhotoGallery } from "@/components/PhotoGallery";
@@ -10,6 +11,9 @@ const description =
   "Acompanhe as novidades da Mora Moda, em Jacareí - SP: publicações recentes do Instagram @mora.feminina e fotos atuais da loja.";
 
 export const Route = createFileRoute("/novidades")({
+  loader: ({ context }) => {
+    context.queryClient.ensureQueryData(newProductsQuery());
+  },
   head: () => ({
     meta: [
       { title },
@@ -25,7 +29,7 @@ export const Route = createFileRoute("/novidades")({
 });
 
 function NovidadesPage() {
-  const arrivals = getNewArrivals();
+  const { data: arrivals } = useSuspenseQuery(newProductsQuery());
 
   return (
     <>
