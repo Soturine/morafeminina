@@ -202,6 +202,8 @@ function Index() {
       <Hero />
       <CategoryGrid />
       <Featured />
+      <BestSellers />
+
       <Highlights />
       <Reviews />
       <AboutTeaser />
