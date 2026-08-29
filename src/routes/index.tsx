@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { storePhotos } from "@/data/store-photos";
 import { SmartImage } from "@/components/SmartImage";
 import { site } from "@/data/site";
-import { getFeatured, PRICE_DISCLAIMER } from "@/data/products";
+import { featuredProductsQuery, bestSellersQuery } from "@/features/catalog/queries";
+import { PRICE_DISCLAIMER, toProductViews } from "@/features/catalog/view-model";
 import { ButtonLink } from "@/components/Button";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { CategoryGrid } from "@/components/CategoryGrid";
@@ -22,6 +24,10 @@ const description =
   "Moda feminina e infantil em Jacareí com variedade, qualidade e ótimos preços. Compre na loja, consulte retirada ou entrega e fale conosco pelo WhatsApp.";
 
 export const Route = createFileRoute("/")({
+  loader: ({ context }) => {
+    context.queryClient.ensureQueryData(featuredProductsQuery(8));
+    context.queryClient.ensureQueryData(bestSellersQuery(4));
+  },
   head: () => ({
     meta: [
       { title },
@@ -35,6 +41,7 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
+
 
 function Hero() {
   return (
