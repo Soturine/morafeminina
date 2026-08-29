@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { getBySegment } from "@/data/products";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { productsQuery } from "@/features/catalog/queries";
 import { Catalog } from "@/components/Catalog";
 import { Section, SectionHeading } from "@/components/Section";
 import { track } from "@/lib/analytics";
@@ -9,7 +10,12 @@ const title = "Moda Feminina em Jacareí | Mora Moda Feminina e Infantil";
 const description =
   "Vestidos, blusas, conjuntos e calças femininas na Mora Moda, em Jacareí - SP. Veja as peças e fale no WhatsApp para tamanhos, cores e disponibilidade.";
 
+const filters = { audience: "feminino" } as const;
+
 export const Route = createFileRoute("/feminino")({
+  loader: ({ context }) => {
+    context.queryClient.ensureQueryData(productsQuery(filters));
+  },
   head: () => ({
     meta: [
       { title },
@@ -25,6 +31,8 @@ export const Route = createFileRoute("/feminino")({
 });
 
 function FemininoPage() {
+  const { data: products } = useSuspenseQuery(productsQuery(filters));
+
   useEffect(() => {
     track("catalog_view", { segment: "feminino" });
   }, []);
@@ -38,7 +46,7 @@ function FemininoPage() {
         description="Peças para diferentes estilos, momentos e ocasiões. As peças abaixo são uma amostra do que está na loja — a variedade completa você confere pessoalmente ou pelo WhatsApp."
       />
       <div className="mt-10">
-        <Catalog products={getBySegment("feminino")} />
+        <Catalog products={products} />
       </div>
     </Section>
   );
