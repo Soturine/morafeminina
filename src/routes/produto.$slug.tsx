@@ -245,7 +245,7 @@ function ProductPage() {
   );
 }
 
-function Related({ slug, categoryId }: { slug: string; categoryId?: string }) {
+function Related({ slug, categoryId }: { slug: string; categoryId?: string | undefined }) {
   const { data: products } = useSuspenseQuery(
     productsQuery(categoryId ? { categoryId } : {}),
   );
