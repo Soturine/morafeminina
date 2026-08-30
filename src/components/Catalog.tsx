@@ -64,9 +64,10 @@ function normalize(value: string): string {
 
 export function Catalog({
   products,
-  showAgeFilter = false,
+  showAgeFilter,
 }: {
   products: Product[];
+  /** Por padrão a faceta aparece quando os dados tiverem faixa etária. */
   showAgeFilter?: boolean;
 }) {
   const items: ProductView[] = useMemo(() => toProductViews(products), [products]);
@@ -76,6 +77,7 @@ export function Catalog({
   const [size, setSize] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null>(null);
   const [age, setAge] = useState<string | null>(null);
+  const [color, setColor] = useState<string | null>(null);
   const [onlyNew, setOnlyNew] = useState(false);
 
   const categories = useMemo(
@@ -100,6 +102,13 @@ export function Catalog({
     () => Array.from(new Set(items.map((p) => p.ageLabel).filter(Boolean) as string[])),
     [items],
   );
+  const colors = useMemo(
+    () =>
+      Array.from(new Set(items.flatMap((p) => p.colors))).sort((a, b) =>
+        a.localeCompare(b, "pt-BR"),
+      ),
+    [items],
+  );
   const priceRanges = useMemo(
     () =>
       PRICE_RANGES.filter((range) =>
@@ -118,6 +127,7 @@ export function Catalog({
       if (category && p.categoryName !== category) return false;
       if (size && !p.sizes.includes(size)) return false;
       if (age && p.ageLabel !== age) return false;
+      if (color && !p.colors.includes(color)) return false;
       if (onlyNew && !p.isNew) return false;
       if (price) {
         const range = PRICE_RANGES.find((r) => r.id === price);
@@ -132,14 +142,17 @@ export function Catalog({
       }
       return true;
     });
-  }, [items, category, size, price, age, onlyNew, query]);
+  }, [items, category, size, price, age, color, onlyNew, query]);
+
+  const ageFilterVisible = (showAgeFilter ?? true) && ages.length > 0;
 
   const hasFilters =
     categories.length > 1 ||
     sizes.length > 0 ||
     priceRanges.length > 1 ||
+    colors.length > 1 ||
     hasNew ||
-    (showAgeFilter && ages.length > 0);
+    ageFilterVisible;
 
   if (items.length === 0) {
     return <EmptyState />;
@@ -191,7 +204,7 @@ export function Catalog({
               </FilterGroup>
             ) : null}
 
-            {showAgeFilter && ages.length > 0 ? (
+            {ageFilterVisible ? (
               <FilterGroup legend="Faixa etária">
                 <Chip active={age === null} onClick={() => setAge(null)}>
                   Todas
@@ -199,6 +212,19 @@ export function Catalog({
                 {ages.map((a) => (
                   <Chip key={a} active={age === a} onClick={() => setAge(a)}>
                     {a}
+                  </Chip>
+                ))}
+              </FilterGroup>
+            ) : null}
+
+            {colors.length > 1 ? (
+              <FilterGroup legend="Cor">
+                <Chip active={color === null} onClick={() => setColor(null)}>
+                  Todas
+                </Chip>
+                {colors.map((c) => (
+                  <Chip key={c} active={color === c} onClick={() => setColor(c)}>
+                    {c}
                   </Chip>
                 ))}
               </FilterGroup>
