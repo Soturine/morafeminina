@@ -1,21 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo } from "react";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { DepartmentCatalog, departmentFilters } from "@/components/DepartmentCatalog";
 import { productsQuery } from "@/features/catalog/queries";
-import { Catalog } from "@/components/Catalog";
-import { Section, SectionHeading } from "@/components/Section";
-import { track } from "@/lib/analytics";
+
+/** Alias histórico de `/catalogo/feminino` — mesma implementação, sem duplicar lógica. */
+const SLUG = "feminino";
 
 const title = "Moda Feminina em Jacareí | Mora Moda Feminina e Infantil";
 const description =
   "Vestidos, blusas, conjuntos e calças femininas na Mora Moda, em Jacareí - SP. Veja as peças e fale no WhatsApp para tamanhos, cores e disponibilidade.";
 
-/** Vitrine feminina: departamento feminino + acessórios (audiência unissex). */
-const AUDIENCES = new Set(["feminino", "unissex"]);
-
 export const Route = createFileRoute("/feminino")({
   loader: ({ context }) => {
-    context.queryClient.ensureQueryData(productsQuery());
+    context.queryClient.ensureQueryData(productsQuery(departmentFilters(SLUG)));
   },
   head: () => ({
     meta: [
@@ -24,35 +20,9 @@ export const Route = createFileRoute("/feminino")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/feminino" },
+      { property: "og:url", content: `/catalogo/${SLUG}` },
     ],
-    links: [{ rel: "canonical", href: "/feminino" }],
+    links: [{ rel: "canonical", href: `/catalogo/${SLUG}` }],
   }),
-  component: FemininoPage,
+  component: () => <DepartmentCatalog slug={SLUG} />,
 });
-
-function FemininoPage() {
-  const { data: all } = useSuspenseQuery(productsQuery());
-  const products = useMemo(
-    () => all.filter((p) => AUDIENCES.has(p.audience ?? "")),
-    [all],
-  );
-
-  useEffect(() => {
-    track("catalog_view", { segment: "feminino" });
-  }, []);
-
-  return (
-    <Section>
-      <SectionHeading
-        eyebrow="Catálogo"
-        as="h1"
-        title="Moda feminina"
-        description="Peças para diferentes estilos, momentos e ocasiões. As peças abaixo são uma amostra do que está na loja — a variedade completa você confere pessoalmente ou pelo WhatsApp."
-      />
-      <div className="mt-10">
-        <Catalog products={products} />
-      </div>
-    </Section>
-  );
-}
