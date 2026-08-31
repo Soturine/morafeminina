@@ -140,7 +140,7 @@ function ProductPage() {
           </ol>
         </nav>
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-16">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-16">
           <ProductGallery images={images} name={product.name} />
 
           <div className="lg:pt-4">
