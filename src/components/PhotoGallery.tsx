@@ -78,6 +78,7 @@ export function PhotoGallery({
   title = "A loja por dentro",
   description = "Fotografias reais da Mora Moda, na Cidade Salvador, em Jacareí.",
   tone = "default",
+  headingAs = "h2",
 }: {
   initialCount?: number;
   step?: number;
@@ -86,6 +87,7 @@ export function PhotoGallery({
   title?: string;
   description?: string;
   tone?: "default" | "sand";
+  headingAs?: "h1" | "h2";
 }) {
   const all = useMemo(buildPhotos, []);
   const [tag, setTag] = useState<GalleryTag | null>(null);
@@ -103,7 +105,7 @@ export function PhotoGallery({
   return (
     <Section tone={tone} id="galeria">
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <SectionHeading eyebrow={eyebrow} title={title} description={description} />
+        <SectionHeading as={headingAs} eyebrow={eyebrow} title={title} description={description} />
         <ButtonAnchor
           href={site.links.googleProfile}
           target="_blank"

@@ -25,6 +25,7 @@ function GaleriaPage() {
   return (
     <>
       <PhotoGallery
+        headingAs="h1"
         eyebrow="Galeria"
         title="Fotos reais da loja"
         description="Um passeio pela Mora Moda: araras de moda feminina, seção infantil, enxoval e acessórios. Clique em uma foto para ampliar."
