@@ -8,7 +8,12 @@ export const Route = createFileRoute("/catalogo/$slug")({
   loader: async ({ params, context }) => {
     const department = departmentBySlug(params.slug);
     if (!department || !department.active || !department.visibleOnWebsite) throw notFound();
-    await context.queryClient.ensureQueryData(productsQuery(departmentFilters(params.slug)));
+    const products = await context.queryClient.ensureQueryData(
+      productsQuery(departmentFilters(params.slug)),
+    );
+    // Mesma regra de `listDepartments`: departamento sem produto publicado não
+    // é uma página pública (evita URL órfã e grupo vazio no catálogo).
+    if (products.length === 0) throw notFound();
     return { name: department.name, description: department.description ?? "" };
   },
   head: ({ loaderData, params }) => {
