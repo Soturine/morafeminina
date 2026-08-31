@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { departmentsQuery } from "@/features/catalog/queries";
+import type { Category } from "@/domain/catalog/types";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { cn } from "@/lib/utils";
 
@@ -14,16 +13,13 @@ const STATIC_LINKS = [
   { label: "Localização", to: "/contato" },
 ] as const;
 
-export function Header() {
+export function Header({ departments = [] }: { departments?: Category[] }) {
   const [open, setOpen] = useState(false);
   const [catalogOpen, setCatalogOpen] = useState(false);
   const [mobileCatalogOpen, setMobileCatalogOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const catalogRef = useRef<HTMLLIElement>(null);
-
-  /** Só departamentos publicáveis e com produto (regra do repositório). */
-  const { data: departments = [] } = useQuery(departmentsQuery());
 
   useEffect(() => {
     setOpen(false);

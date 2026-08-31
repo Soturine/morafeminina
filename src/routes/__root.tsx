@@ -15,6 +15,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { clothingStoreSchema } from "@/lib/structured-data";
+import { departmentsQuery } from "@/features/catalog/queries";
 
 function NotFoundComponent() {
   return (
@@ -77,6 +78,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  /**
+   * Departamentos do menu resolvidos no loader: garante o mesmo HTML no SSR e
+   * na hidratação (useQuery no Header causava hydration mismatch).
+   */
+  loader: async ({ context }) => ({
+    departments: await context.queryClient.ensureQueryData(departmentsQuery()),
+  }),
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -132,6 +140,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { departments } = Route.useLoaderData();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -142,7 +151,7 @@ function RootComponent() {
         Ir para o conteúdo
       </a>
       <div className="flex min-h-screen flex-col">
-        <Header />
+        <Header departments={departments} />
         <main id="conteudo" className="flex-1">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
